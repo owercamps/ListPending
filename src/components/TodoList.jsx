@@ -1,6 +1,6 @@
 import { TodoItem } from "./TodoItem";
 
-export function TodoList({data =[] }) {
+export function TodoList({onToggle, data =[] }) {
   if (data.length === 0) {
     return(
       <>
@@ -8,13 +8,14 @@ export function TodoList({data =[] }) {
       </>
     )
   }
+  const incomplete = data.filter(({ isDone }) => !isDone);
   return (
     <>
-      <span>Pendientes: {data.length}</span>
+      <span>Pendientes: {incomplete.length}</span>
       <ul className="card">
         {
           data?.map(({id,description,isDone}) =>(
-            <TodoItem id={id} description={description} isDone={isDone} />
+            <TodoItem key={id} id={id} description={description} isDone={isDone} onToggle={onToggle} />
           ))
         }
       </ul>
