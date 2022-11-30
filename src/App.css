@@ -94,3 +94,11 @@ li {
 .msg-color {
   color: cadetblue;
 }
+
+.center{
+  text-align: center;
+}
+
+.w-100{
+  width: 100% !important;
+}

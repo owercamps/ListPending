@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import FormNew from "./components/Form";
 import { TodoList } from "./components/TodoList";
 
 const listFull = [
@@ -16,12 +17,24 @@ export default function App() {
     data[information].isDone = !data[information].isDone;
     setList(data);
   }
+
+  const handleSubmit = (e) =>{
+    console.log(e);
+    const addItem = {
+      id: list.at(-1).id + 1,
+      description: e,
+      isDone: false
+    }
+    setList((after) =>[...after,addItem])
+  }
+
   return (
     <div className="App">
       <h1>Lista de Pendientes</h1>
 
       <ul className="card">
         <TodoList data={list} onToggle={UpdatePending} />
+        <FormNew onSubmit={handleSubmit} />
       </ul>
     </div>
   );
